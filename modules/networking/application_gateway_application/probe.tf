@@ -1,6 +1,5 @@
 
 resource "null_resource" "set_probe" {
-  depends_on = [null_resource.set_backend_pools]
 
   for_each = try(var.settings.probes, {})
 

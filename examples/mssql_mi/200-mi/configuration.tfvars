@@ -113,17 +113,14 @@ azuread_groups = {
   }
 }
 
-## specify azuread_groups key OR you can import existing azuread group by using group OID as shown below
-
 mssql_mi_administrators = {
   sqlmi1 = {
     resource_group_key = "sqlmi_region1"
     mi_server_key      = "sqlmi1"
     login              = "sqlmiadmin-khairi"
-
-    # group key or existing group OID or upn supported
     azuread_group_key  = "sql_mi_admins"
-    # azuread_group_id   = "<specify existing azuread group's Object Id (OID) here>"     
+
+    # group key or upn supported
     # user_principal_name = ""
   }
 }
