@@ -10,6 +10,12 @@
 #   use_slug      = var.global_settings.use_slug
 # }
 
+data "local_file" "runbook" {
+  for_each = try(var.settings.content, null) == null ? [] : [1]
+
+  filename = var.settings.content
+}
+
 resource "azurerm_automation_runbook" "automation_runbook" {
   name                    = var.settings.name
   location                = var.location
@@ -20,7 +26,7 @@ resource "azurerm_automation_runbook" "automation_runbook" {
   description             = try(var.settings.description, null)
   runbook_type            = var.settings.runbook_type
 
-  content = try(var.settings.content, null)
+  content = try(var.settings.content, null) == null ? null : local_file.runbook[1].content
 
   dynamic "publish_content_link" {
     for_each = try(var.settings.publish_content_link, null) == null ? [] : [1]
