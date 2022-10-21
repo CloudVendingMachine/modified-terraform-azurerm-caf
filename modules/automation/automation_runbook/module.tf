@@ -26,7 +26,7 @@ resource "azurerm_automation_runbook" "automation_runbook" {
   description             = try(var.settings.description, null)
   runbook_type            = var.settings.runbook_type
 
-  content = try(var.settings.content, null) == null ? null : data.local_file.runbook[1].content
+  content = try(var.settings.content, null) == null ? null : data.local_file.runbook[0].content
 
   dynamic "publish_content_link" {
     for_each = try(var.settings.publish_content_link, null) == null ? [] : [1]
