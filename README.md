@@ -2,11 +2,14 @@
 List of changes:
 
 1. Using `int-azrm-3.7.0` branch from https://github.com/aztfmod/terraform-azurerm-caf  
-   **Reason**: Known issue with `main` branch using azurerm v2.99 https://github.com/aztfmod/terraform-azurerm-caf/issues/1173
+   **Reason**: Known issue with `main` branch using azurerm v2.99 
+   Issue tracker: https://github.com/aztfmod/terraform-azurerm-caf/issues/1173
 2. Added `name` to `automation_runbook` and `automation_schedule` modules output  
-   **Reason**: Impossible to use `azurerm_automation_job_schedule` resource without runbook and schedule names
+   **Reason**: Impossible to use `azurerm_automation_job_schedule` resource without runbook and schedule names  
+   Issue tracker: https://github.com/aztfmod/terraform-azurerm-caf/issues/1379
 3. Modified `content` parameter of `automation_runbook` module to allow relative path to script  
    **Reason**: Unable to use local files
+   Issue tracker: https://github.com/aztfmod/terraform-azurerm-caf/issues/1379
 
 # Cloud Adoption Framework for Azure - Terraform module
 
