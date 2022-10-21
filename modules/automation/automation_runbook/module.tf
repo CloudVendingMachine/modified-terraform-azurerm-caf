@@ -11,7 +11,7 @@
 # }
 
 data "local_file" "runbook" {
-  for_each = try(var.settings.content, null) == null ? [] : [1]
+  count    = try(var.settings.content, null) == null ? 0 : 1
 
   filename = var.settings.content
 }
