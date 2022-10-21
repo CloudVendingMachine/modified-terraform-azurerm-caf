@@ -1,3 +1,13 @@
+# This is modified version of Azure CAF TF Module
+List of changes:
+
+1. Using `int-azrm-3.7.0` branch from https://github.com/aztfmod/terraform-azurerm-caf  
+   **Reason**: Known issue with `main` branch using azurerm v2.99 https://github.com/aztfmod/terraform-azurerm-caf/issues/1173
+2. Added `name` to `automation_runbook` and `automation_schedule` modules output  
+   **Reason**: Impossible to use `azurerm_automation_job_schedule` resource without runbook and schedule names
+3. Modified `content` parameter of `automation_runbook` module to allow relative path to script  
+   **Reason**: Unable to use local files
+
 # Cloud Adoption Framework for Azure - Terraform module
 
 Microsoft [Cloud Adoption Framework for Azure](https://aka.ms/caf) provides you with guidance and best practices to adopt Azure.
@@ -16,9 +26,15 @@ This module can be used inside [:books: Azure Terraform Landing zones](https://a
 
 ```terraform
 module "caf" {
-  source  = "aztfmod/caf/azurerm"
-  version = "~>5.5.0"
-  # insert the 7 required variables here
+  source = "github.com/CloudVendingMachine/modified-terraform-azurerm-caf.git?ref=main"
+  
+  providers = {
+    azurerm.vhub = azurerm
+  }
+
+  global_settings = local.global_settings
+  resource_groups = local.main.resource_groups
+  # ...
 }
 ```
 
